@@ -1,0 +1,79 @@
+:root {
+  --bg: #f4f6fb; --card: #ffffff; --primary: #128c7e; --primary-dark: #075e54;
+  --accent: #25d366; --text: #1f2937; --muted: #6b7280; --border: #e5e7eb;
+  --new: #3b82f6; --confirming: #f59e0b; --confirmed: #22c55e; --cancelled: #ef4444;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Cairo', sans-serif; background: var(--bg); color: var(--text); padding-bottom: 40px; }
+
+.topbar {
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  color: #fff; padding: 14px 20px; display: flex; flex-wrap: wrap; gap: 12px;
+  align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 10;
+}
+.brand { font-weight: 800; font-size: 1.15rem; }
+.brand span { font-weight: 400; opacity: .85; font-size: .95rem; }
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+.tab {
+  background: rgba(255,255,255,.12); color: #fff; border: none; padding: 8px 16px;
+  border-radius: 20px; cursor: pointer; font-family: inherit; font-size: .9rem; font-weight: 600;
+}
+.tab.active, .tab:hover { background: #fff; color: var(--primary-dark); }
+
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 16px 20px; max-width: 1100px; margin: auto; }
+.stat-card { background: var(--card); border-radius: 14px; padding: 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,.05); }
+.stat-num { font-size: 1.6rem; font-weight: 800; color: var(--primary); }
+.stat-label { color: var(--muted); font-size: .85rem; }
+
+.view { max-width: 1100px; margin: auto; padding: 0 20px; }
+.hidden { display: none !important; }
+
+.filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.chip {
+  border: 1px solid var(--border); background: var(--card); padding: 6px 14px;
+  border-radius: 18px; cursor: pointer; font-family: inherit; font-size: .85rem; font-weight: 600; color: var(--text);
+}
+.chip.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+.table-wrap { background: var(--card); border-radius: 14px; overflow-x: auto; box-shadow: 0 2px 8px rgba(0,0,0,.05); }
+table { width: 100%; border-collapse: collapse; font-size: .88rem; min-width: 860px; }
+th, td { padding: 10px 12px; text-align: right; border-bottom: 1px solid var(--border); white-space: nowrap; }
+th { background: #f9fafb; color: var(--muted); font-weight: 700; font-size: .8rem; }
+tr:last-child td { border-bottom: none; }
+
+.badge { padding: 3px 10px; border-radius: 12px; font-size: .78rem; font-weight: 700; color: #fff; }
+.badge.new { background: var(--new); }
+.badge.confirming { background: var(--confirming); }
+.badge.confirmed { background: var(--confirmed); }
+.badge.cancelled { background: var(--cancelled); }
+
+select.status-select { font-family: inherit; padding: 4px 8px; border-radius: 8px; border: 1px solid var(--border); }
+
+.add-form { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.add-form input {
+  flex: 1; min-width: 140px; padding: 10px 14px; border: 1px solid var(--border);
+  border-radius: 10px; font-family: inherit; font-size: .9rem;
+}
+.btn-primary {
+  background: var(--primary); color: #fff; border: none; padding: 10px 20px;
+  border-radius: 10px; cursor: pointer; font-family: inherit; font-weight: 700;
+}
+.btn-primary:hover { background: var(--primary-dark); }
+.btn-save { background: var(--accent); color: #fff; border: none; border-radius: 8px; padding: 4px 10px; cursor: pointer; font-family: inherit; }
+.btn-del { background: #fee2e2; color: var(--cancelled); border: none; border-radius: 8px; padding: 4px 10px; cursor: pointer; font-family: inherit; }
+input.fee-input { width: 90px; padding: 4px 8px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; }
+input.cell-input { padding: 4px 8px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; width: 130px; }
+
+.hint { color: var(--muted); font-size: .85rem; margin-bottom: 10px; }
+.toast {
+  position: fixed; bottom: 20px; right: 50%; transform: translateX(50%);
+  background: #111827; color: #fff; padding: 10px 24px; border-radius: 24px; font-size: .9rem;
+}
+
+@media (max-width: 640px) {
+  .stats { grid-template-columns: 1fr 1fr; }
+  .stats .stat-card:last-child { grid-column: span 2; }
+  .brand span { display: none; }
+  table { font-size: .8rem; }
+  th, td { padding: 8px 8px; }
+}

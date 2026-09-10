@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>لوحة التحكم — طلبات واتساب</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">🛍️ متجري <span>— طلبات واتساب</span></div>
+    <nav class="tabs">
+      <button class="tab active" data-view="orders">📦 الطلبات</button>
+      <button class="tab" data-view="products">🏷 المنتجات</button>
+      <button class="tab" data-view="wilayas">🚚 أسعار التوصيل</button>
+    </nav>
+  </header>
+
+  <!-- Stats -->
+  <section class="stats" id="stats">
+    <div class="stat-card"><div class="stat-num" id="st-today">0</div><div class="stat-label">طلبات اليوم</div></div>
+    <div class="stat-card"><div class="stat-num" id="st-confirmed">0</div><div class="stat-label">طلبات مؤكدة</div></div>
+    <div class="stat-card"><div class="stat-num" id="st-revenue">0</div><div class="stat-label">الإيرادات (دج)</div></div>
+  </section>
+
+  <!-- Orders view -->
+  <section id="view-orders" class="view">
+    <div class="filters" id="status-filters">
+      <button class="chip active" data-status="all">الكل</button>
+      <button class="chip" data-status="new">🆕 جديد</button>
+      <button class="chip" data-status="confirming">⏳ قيد التأكيد</button>
+      <button class="chip" data-status="confirmed">✅ مؤكد</button>
+      <button class="chip" data-status="cancelled">❌ ملغى</button>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th><th>الزبون</th><th>الهاتف</th><th>الولاية</th><th>البلدية</th>
+            <th>المنتج</th><th>الكمية</th><th>التوصيل</th><th>المجموع</th><th>الحالة</th><th>التاريخ</th><th></th>
+          </tr>
+        </thead>
+        <tbody id="orders-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Products view -->
+  <section id="view-products" class="view hidden">
+    <form id="product-form" class="add-form">
+      <input type="text" id="p-name-ar" placeholder="اسم المنتج (عربية)" required />
+      <input type="text" id="p-name-fr" placeholder="Nom (français)" />
+      <input type="number" id="p-price" placeholder="السعر (دج)" min="1" required />
+      <button type="submit" class="btn-primary">➕ إضافة منتج</button>
+    </form>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>الاسم (عربية)</th><th>الاسم (فرنسية)</th><th>السعر (دج)</th><th>مفعّل</th><th></th></tr></thead>
+        <tbody id="products-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Wilayas view -->
+  <section id="view-wilayas" class="view hidden">
+    <p class="hint">💡 عدّل سعر التوصيل لكل ولاية ثم اضغط 💾 حفظ</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>الرقم</th><th>الولاية</th><th>الاسم الفرنسي</th><th>سعر التوصيل (دج)</th><th></th></tr></thead>
+        <tbody id="wilayas-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="app.js"></script>
+</body>
+</html>
